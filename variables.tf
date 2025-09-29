@@ -1,3 +1,9 @@
+variable "vm_type_app" {
+  type        = string
+  default     = null
+  description = "Define the instance type to use"
+}
+
 variable "vm_size_app" {
   description = "Define the VM size to use"
   type        = string
@@ -6,6 +12,24 @@ variable "vm_size_app" {
 
 variable "count_vm_instances" {
   description = "Set the number of VM instances to create"
+  type        = number
+  default     = 1
+}
+
+variable "vmss_app_min_size" {
+  description = "Set the minimum number of app instances to create in autoscaling group"
+  type        = number
+  default     = 1
+}
+
+variable "vmss_app_max_size" {
+  description = "Set the maximum number of app instances to create in autoscaling group"
+  type        = number
+  default     = 1
+}
+
+variable "vmss_app_desired_cappacity" {
+  description = "Set the desired number of app instances to create in autoscaling group"
   type        = number
   default     = 1
 }

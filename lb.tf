@@ -1,11 +1,18 @@
 module "lb_app" {
   count               = local.cluster_resources ? 1 : 0
-  source              = "git@github.com:terraform-azurerm-modules/lb-module.git?ref=1.0.0"
-  env_short           = local.env_short
-  app_name            = var.app_name
-  subnet_id           = data.azurerm_subnet.private_subnet.id
-  protocol_map        = local.protocol_map
+  source              = "git@github.com:azure/terraform-azurerm-loadbalancer.git?ref=4.4.0"
+  type                = "private"
+  frontend_subnet_id  = azurerm_subnet.demo_app_subnet.id
+  lb_sku              = "Standard"
+  frontend_private_ip_address_allocation = "Dynamic"
   resource_group_name = data.azurerm_virtual_network.vnet.resource_group_name
-  location            = data.azurerm_virtual_network.vnet.location
-  vmss_name           = module.vmss_app.name
+  lb_port = {
+    http  = ["80", "Tcp", "80"]
+    https = ["443", "Tcp", "443"]
+  }
+
+  lb_probe = {
+    http  = ["Tcp", "80", ""]
+    http2 = ["Http", "1443", "/"]
+  }
 }

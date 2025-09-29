@@ -23,3 +23,12 @@ locals {
   ports_ingress_app = lookup(local.ports_ingress_app_map, var.app_name, local.ports_ingress_app_map["default"])
   protocol_map      = { for idx, val in local.ports_ingress_app : idx => val }
 }
+
+locals {
+  naming = {
+    # lookup outputs to have consistent naming
+    for type in local.naming_types : type => lookup(module.naming, type).name
+  }
+
+  naming_types = ["subnet", "network_security_group", "key_vault_secret"]
+}
