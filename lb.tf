@@ -6,6 +6,7 @@ module "lb_app" {
   lb_sku              = "Standard"
   frontend_private_ip_address_allocation = "Dynamic"
   resource_group_name = data.azurerm_virtual_network.vnet.resource_group_name
+  tags                = var.default_tags
   lb_port = {
     http  = ["80", "Tcp", "80"]
     https = ["443", "Tcp", "443"]

@@ -1,16 +1,13 @@
 data "azurerm_virtual_network" "vnet" {
-  name                = "vnet-it-management-${local.env_short}-001-westeurope-001"
-  resource_group_name = "rg-test-dev-001"
+  name                = "vix${substr(var.environment, 0, 1)}01-mgmt-weu-ntwk-vnet"
+  resource_group_name = "vix${substr(var.environment, 0, 1)}01-mgmt-weu-ntwk-rsg"
 }
 
-#data "azurerm_subnet" "private_subnet" {
-#  name                 = "subnet-${var.environment}-private"
-#  virtual_network_name = data.azurerm_virtual_network.vnet.name
-#  resource_group_name  = data.azurerm_virtual_network.vnet.resource_group_name
-#}
+resource "random_integer" "ooo" {
+  min = 0
+  max = 999
+}
 
-#data "azurerm_subnet" "public_subnet" {
-#  name                 = "subnet-${var.environment}-public"
-#  virtual_network_name = data.azurerm_virtual_network.vnet.name
-#  resource_group_name  = data.azurerm_virtual_network.vnet.resource_group_name
-#}
+output "random_number" {
+  value = format("%03d", random_integer.ooo.result)
+}

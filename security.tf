@@ -2,7 +2,7 @@ resource "azurerm_network_security_group" "nsg_app" {
   name                = "nsg-${local.env_short}-app-${var.app_name}"
   location            = data.azurerm_virtual_network.vnet.location
   resource_group_name = data.azurerm_virtual_network.vnet.resource_group_name
-
+  tags                = var.default_tags
   dynamic "security_rule" {
     for_each = local.ports_ingress_app
     content {
