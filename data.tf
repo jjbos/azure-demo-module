@@ -1,6 +1,6 @@
 data "azurerm_virtual_network" "vnet" {
-  name                = "vix${substr(var.environment, 0, 1)}01-mgmt-weu-ntwk-vnet"
-  resource_group_name = "vix${substr(var.environment, 0, 1)}01-mgmt-weu-ntwk-rsg"
+  name                = "vixd01-mgmt-weu-ntwk-vnet"
+  resource_group_name = "vixd01-mgmt-weu-ntwk-rsg"
 }
 
 resource "random_integer" "ooo" {

@@ -1,6 +1,7 @@
 module "lb_app" {
   count               = local.cluster_resources ? 1 : 0
-  source              = "git@github.com:azure/terraform-azurerm-loadbalancer.git?ref=4.4.0"
+  # source              = "git@github.com:azure/terraform-azurerm-loadbalancer.git?ref=4.4.0"
+  source              = "C:\\git\\vi\\terraform-azurerm-loadbalancer"
   type                = "private"
   frontend_subnet_id  = azurerm_subnet.demo_app_subnet.id
   lb_sku              = "Standard"

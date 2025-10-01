@@ -7,8 +7,9 @@ module "naming" {
 }
 
 module "kv" {
-  source  = "cloudnationhq/kv/azure"
-  version = "~> 4.0"
+  # source  = "cloudnationhq/kv/azure"
+  source = "C:\\git\\vi\\terraform-azure-kv"
+  # version = "~> 4.0"
 
   naming = local.naming 
   tags   = var.default_tags

@@ -21,6 +21,7 @@ module "vmss_app" {
       enable = true
     }
     autoscaling = {
+      name  = format("scaler-%s-app-%s", local.env_short, var.app_name)
       min   = var.vmss_min_size
       max   = var.vmss_max_size
       rules = {
